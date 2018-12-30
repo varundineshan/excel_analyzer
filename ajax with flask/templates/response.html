@@ -1,0 +1,17 @@
+<p>
+<p>
+<table class="table table-hover" border = 2>
+                <tr>
+                    {% for i in header %}
+                    <th> {{ i }} </th>
+                    {% endfor %}
+                </tr>
+                {% for i in range(0,myList|length) %}
+                <tr>
+                    {% for j in range(0,header|length) %}
+                    <td> {{ myList[i][j] }} </td>
+                     {% endfor %}
+                </tr>
+               {% endfor %}
+
+ </table>

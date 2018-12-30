@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+ <html lang="en">
+
+ <head>
+     <meta charset="utf-8">
+     <meta http-equiv="X-UA-Compatible" content="IE=edge">
+     <meta name="viewport" content="width=device-width, initial-scale=1">
+     <meta name="description" content="">
+     <meta name="author" content="">
+     <link rel="icon" href="../../favicon.ico">
+     <title>Analyze Sheets</title>
+     <!-- Bootstrap core CSS -->
+     <!--<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">-->
+     <!--<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">-->
+     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+     <!-- Custom styles for this template -->
+    <link rel="stylesheet" type="text/css" href="static/style.css">
+ </head>
+{% include 'navigation.html' %}
+ <body>
+
+     <div class="file-upload">
+
+         <form class="form-signin" action="/" method="post" role="form">
+             <h4 class="form-signin-heading">&nbsp;Select Date </h4>
+             <div class="form-group row">
+                 &nbsp;&nbsp;&nbsp;&nbsp;
+                <div class="col-xs-3">
+                <input type="date" name="date" class="form-control"  autofocus>
+                </div>&nbsp;&nbsp;
+                 <div class="col-xs-1">
+                     <h5>OR</h5>
+                 </div>&nbsp;&nbsp;
+
+             <div class="col-xs-3">
+
+                <select class="form-control" id="sel1" name="selected">
+                <option>---More Options----</option>
+                    <li class="divider"></li>
+                <option >This Week</option>
+                    <li class="divider"></li>
+                <option >This Month</option>
+                    <li class="divider"></li>
+                <option >This Year</option>
+                </select>
+             </div>
+
+            </div>
+             <!--<input type="password" name="password" class="form-control" placeholder="Password" required>-->
+
+             <button class="btn btn-lg btn-primary btn-block" type="button">Process </button>
+         </form>
+         <div id="resp"></div>
+     </div>
+
+ </body>
+
+ <script>
+     $(function() {
+    $('button').click(function() {
+        $.ajax({
+            url: '/get_data/',
+            data: $('form').serialize(),
+            type: 'POST',
+            success: function(response) {
+            $("div#resp").empty();
+            $('div#resp').append(response.data);
+                console.log(response);
+            },
+            error: function(error) {
+                console.log(error);
+            }
+        });
+    });
+});
+
+ </script>
+ </html>
